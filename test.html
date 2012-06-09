@@ -1,0 +1,246 @@
+<html>
+	<head>
+		
+		<title>TEst</title>
+		
+		<script type="text/javascript" src="jsi.js"></script>
+	    
+	    <script type="text/javascript">
+	        jsi.dhtml.load();
+	        jsi.test.load();
+	        jsi.animation.load();
+	        jsi.ajax.load();
+	        jsi.table.load();
+	        jsi.validation.load();
+	    </script>
+	    
+	    <script type="text/javascript">
+	       
+	        
+	        jsi.onload.addCompleteFunction(startUp);
+	        
+	        function startUp()
+	        {
+	            //test 0
+	            jsi.test.addTest("DHTML get/setValue on Element",
+	                function()
+	                    {
+	                        var header = new jsi.dhtml.Element("header");
+	        
+	                        var headerText = "New Header Text";
+        	                
+	                        header.setValue(headerText);
+        	                
+	                        return header.getValue() == headerText;
+	                    }
+	            );
+	            
+	            //test 1
+	            jsi.test.addTest("DHTML get/setValue on Formitem",
+	                function()
+	                    {
+	                        var x = new jsi.dhtml.Formitem("inFName");
+	        
+	                        var y = "Changed";
+        	                
+	                        x.setValue(y);
+        	                
+	                        return x.getValue() == y;
+	                    }
+	            );
+	            
+	            //test 2
+	            jsi.test.addTest("Fading...",
+	                function()
+	                    {
+	                        var x = new jsi.dhtml.Element("fader");
+	        
+	                        var y = new jsi.animation.Fade(x,100,100,0,10,true);
+        	                
+	                        y.start();
+        	                
+	                        return true;
+	                    }
+	            );
+	            
+	            //test 3
+	            jsi.test.addTest("Resetting a formitem from an Element.",
+	                function()
+	                    {
+	                        var x = new jsi.dhtml.Element("inLName");
+	                        
+	                        x = jsi.dhtml.resetElement(x);
+	                        
+	                        var newText = "I've changed.";
+	                        
+	                        x.setValue(newText);
+        	                
+	                        return x.getValue() == newText;
+	                    }
+	            );
+	            
+	            //test 4
+	            jsi.test.addTest("Ajax testing.",
+	                function()
+	                    {
+	                        window.tmpAjax = new jsi.ajax.Automate(null,new Array(new jsi.ajax.Element("name")),"test.xml",true);
+	                        
+	                        window.tmpAjax.outputFunction = window.outputFnc;
+	                        
+	                        window.tmpAjax.start();
+	                        
+	                        return true;
+	                    }
+	            );
+	            
+	            //test 5
+	            jsi.test.addTest("Table testing.",
+	                function()
+	                    {
+	                        table = new jsi.table.Table(new jsi.dhtml.Element("tableParent"));
+	                        
+	                        var c1 = table.newColumn("Hobby","c1");
+	                        var n1 = table.newColumn("Nostalgia","n1");
+	                        
+	                        row = new jsi.table.Row();
+	                        
+	                        row.newCell(c1,"Fishing");
+	                        row.newCell(n1,"Talking");
+	                        
+	                        table.addRow(row);
+	                        
+	                        row = new jsi.table.Row();
+	                        
+	                        row.newCell(c1,"Cycling");
+	                        row.newCell(n1,"Coffee");
+	                        
+	                        table.addRow(row);
+	                        
+	                        row = new jsi.table.Row();
+	                        
+	                        row.newCell(c1,"Running");
+	                        row.newCell(n1,"Chatting");
+	                        
+	                        table.addRow(row);
+	                        var x = table.getRenderer();
+	                        
+	                        x.setPageSize(2);
+	                        x.draw();
+	                        
+	                        return true;
+	                    }
+	            );
+	            
+	            //
+	           
+	            jsi.test.begin(new jsi.dhtml.Element("outputDiv")); 
+	        }
+	        
+	        
+	        function catchFnc()
+	        {
+	            if (window.tmpAjax.isReady())
+	            {
+	                 var xmldoc = window.tmpAjax.getXMLResponse();
+				
+				    var root = xmldoc.documentElement;
+    				
+				    var rowNodes = root.getElementsByTagName("row");
+				
+				
+
+				    for (var x = 0; x < rowNodes.length; x++)
+				    {
+    	                alert(rowNodes[x].getElementsByTagName("name").item(0).firstChild.data);   
+	                }
+	                
+	            }
+	        }
+	        
+	        function outputFnc(outputArray)
+	        {
+	            var names = new jsi.dhtml.Element("names");
+	            names.setValue(names.getValue() + "found: " + outputArray["name"] + ",");
+	        }
+	        
+	        
+	    </script>
+	    
+	    <style type="text/css">
+	        html,body
+	        {
+	            font-family: tahoma;
+	            font-size: 0.85em;
+	        }
+	        
+	        ul.Form
+	        {
+	        
+	        }
+	        
+	        ul.Form li
+	        {
+	            list-style-type: none;
+	        }
+	        
+	        ul.Form ul li 
+	        {
+	            display: inline;
+	        }
+	    
+	        .Output
+	        {
+	            border: 1px solid gray;
+	            padding: 5px;
+	            line-height: 1.5em;
+	        }
+	    </style>
+	</head>
+	<body>
+	
+	    <form method="post" jsi_validate="true" jsi_validateon="submit">
+	        
+	        <div id="header">My Form Header</div>
+	        
+	        <ul class="Form">
+	            <li>
+	                <ul>
+	                    <li>First Name</li>
+	                    <li><input id="inFName" value="Justin" /></li>
+	                </ul>
+	            </li>
+	            <li>
+	                <ul>
+	                    <li>Last Name</li>
+	                    <li><input id="inLName" value="Moses" jsi_validate="true" jsi_label="Last Name" jsi_validationtype="numeric" /></li>
+	                </ul>
+	            </li>
+	            <li>
+	                <ul>
+	                    <li>DOB</li>
+	                    <li><input id="inDOB" value="12/12/2006" jsi_validate="true" jsi_label="DOB" jsi_validationtype="date" /></li>
+	                </ul>
+	            </li>
+	             <li>
+	                <ul>
+	                    <li>Email</li>
+	                    <li><input id="inEmail" value="test@test.com" jsi_validate="true" jsi_label="Email" jsi_validationtype="email" /></li>
+	                </ul>
+	            </li>
+	            <li>
+	                <ul>
+	                    <li></li>
+	                    <li><input id="inSubmit" value="Submit" type="submit" /></li>
+	                </ul>
+	            </li>
+	        </ul>
+	    </form>
+	
+	    <div id="fader" style="width: 10em;">I'm a fade!</div>
+	    <div id="names"></div>
+	    <div id="tableParent"></div>
+	    <div id="outputDiv" class="Output">The output goes here...</div>
+	    
+	
+	</body>
+</html>
