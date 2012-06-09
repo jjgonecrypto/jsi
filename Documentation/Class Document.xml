@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<?xml-stylesheet type="text/xsl" href="Class Document.xsl"?>
+
+<package>
+  <name>Validation</name>
+  <version>1.2.2.0</version>
+  
+  <interfaces>
+    <interface>
+      <name>IValidate</name>
+      <desc>All validator implement this</desc>
+
+      <properties>
+        <property>
+          <type>string</type>
+          <name>errMsg</name>
+        </property>
+      </properties>
+
+      <methods>
+
+        <method>
+          <type>boolean</type>
+          <name>validate</name>
+          <state>abstract</state>
+          <extended>
+            <desc>Returns whether or not validation was successful, and sets the errMsg property (with an appropriate error message).</desc>
+          </extended>
+        </method>
+
+      </methods>
+    </interface>
+  </interfaces>
+
+  <enumerators>
+    <enumerator>
+      <name>ValidationType</name>
+      <desc>All the registered validation methods</desc>
+      <types>
+        <type>
+          <name>text</name>
+        </type>
+        <type>
+          <name>numeric</name>
+        </type>
+        <type>
+          <name>date</name>
+        </type>
+        <type>
+          <name>email</name>
+        </type>
+        <type>
+          <name>single</name>
+        </type>
+        <type>
+          <name>radio</name>
+        </type>
+        <type>
+          <name>checkbox</name>
+        </type>
+      </types>
+    </enumerator>
+    
+    <enumerator>
+      <name>PropertyType</name>
+      <desc>Enforces types on attribute-defined properties</desc>
+      <types>
+        <type>
+          <name>bool</name>
+        </type>
+        <type>
+          <name>string</name>
+        </type>
+        <type>
+          <name>integer</name>
+        </type>
+        <type>
+          <name>decimal</name>
+        </type>
+      </types>
+    </enumerator>
+  </enumerators>
+
+  <attributes>
+    <attribute>
+      ...
+      <name>Attributes</name>
+      <desc>All the registered attributes for corresponding validation properties</desc>
+      <types>
+        <type>
+          <name>validate</name>
+          <attribute>flxjs_validate</attribute>
+          <datatype>boolean</datatype>
+          <required>true</required>
+        </type>
+        <type>
+          <name>numeric</name>
+        </type>
+        <type>
+          <name>date</name>
+        </type>
+        <type>
+          <name>email</name>
+        </type>
+        <type>
+          <name>single</name>
+        </type>
+        <type>
+          <name>radio</name>
+        </type>
+        <type>
+          <name>checkbox</name>
+        </type>
+      </types>
+    </attribute>  
+  </attributes>
+  
+  <classes>
+    <class>
+      <name>Property</name>
+      <properties>
+        <property>
+          <type enum="true">PropertyType</type>
+          <name>type</name>
+        </property>
+        <property>
+          <type>boolean</type>
+          <name>required</name>
+        </property>
+        <property>
+          <type>mixed</type>
+          <name>value</name>
+        </property>
+      </properties>
+
+      <constructor>
+        <arguments>
+          <argument>
+            <type enum="true">PropertyType</type>
+            <name>type</name>
+          </argument>
+          <argument>
+            <type>boolean</type>
+            <name>required</name>
+          </argument>
+          <argument>
+            <type>mixed</type>
+            <name>value</name>
+          </argument>
+        </arguments>
+      </constructor>
+      
+    </class>
+
+
+    <class>
+      <name>Properties</name>
+      <desc>Stores properties for a class loaded from the element's attributes</desc>
+      <properties>
+        <property>
+          <type interface="true" package="DHTML">IElement</type>
+          <name>element</name>
+        </property> 
+      </properties>
+
+      <constructor>
+        <arguments>
+          <argument>
+            <type interface="true" package="DHTML">IElement</type>
+            <name>element</name>
+          </argument>
+        </arguments>
+      </constructor>
+
+      <methods>
+        <method>
+          <type>mixed</type>
+          <name>get</name>
+          <extended>
+            <desc>Used to get a property. Note: the property should be initialise with a set() call before this (with or without a default value)</desc>
+            <arguments>
+              <argument>
+                <type class="true">Attributes</type>
+                <name>name</name>
+              </argument>
+            </arguments>
+          </extended>
+          </method>
+      </methods>
+      
+    </class>
+    
+    <class>
+      <state>Partial</state>
+      <name>Validate</name>
+      <implements>IValidate</implements>
+      <properties>
+        <property>
+          <type>string</type>
+          <name>errMsg</name>
+        </property>
+        <property>
+          <type enum="true">Attributes</type>
+          <name>attributes</name>
+        </property>
+        <property>
+          <type interface="true" package="DHTML">IElement</type>
+          <name>element</name>
+        </property>
+        <property>
+          <type class="true">Properties</type>
+          <name>properties</name>
+        </property>
+      </properties>
+
+      <methods>
+        <method>
+          <type>boolean</type>
+          <name>validate</name>
+          <state>abstract</state>
+        </method>
+      </methods>
+    </class>
+
+    <class>
+      <name>Validate_Text</name>
+      <desc>Validates text fields, ensuring they have been filled in</desc>
+      <implements>IValidate</implements>
+      <extends>Validate</extends>
+      
+      <attributes>
+        <attribute>
+          <name>Exact Characters</name>
+          <desc>Enforce an exact number of characters for the input</desc>
+          <value>flxjs_exactchars</value>
+        </attribute>
+        <attribute>
+          <name>Minimum Characters</name>
+          <desc>Enforce a minimum number of characters for the input</desc>
+          <value>flxjs_minchars</value>
+        </attribute>
+      </attributes>
+      
+      <methods>
+        <method>
+          <type>boolean</type>
+          <name>validate</name>
+          <state>implementation</state>
+        </method>
+      </methods>
+      
+    </class>
+
+    <class>
+    <name>Validate_Email</name>
+    <desc>Validates text fields with email content, attempting to ensure they are valid email addresses.</desc>
+
+    <implements>IValidate</implements>
+    <extends>Validate</extends>
+
+      <methods>
+        <method>
+          <type>boolean</type>
+          <name>validate</name>
+          <state>implementation</state>
+        </method>
+      </methods>
+      
+    </class>
+
+    <class>
+      <name>Validate_Radio</name>
+      <desc>Validates a collection of radio buttons.</desc>
+
+      <implements>IValidate</implements>
+      <extends>Validate</extends>
+
+      <methods>
+        <method>
+          <type>boolean</type>
+          <name>validate</name>
+          <state>implementation</state>
+        </method>
+        <method>
+          <type>void</type>
+          <name>addToGroup</name>
+          <extended>
+            <desc>Add an element to the group</desc>
+            <arguments>
+              <argument>
+                <type class="true" package="DHTML">IFormitem_Checkitem</type>
+                <name>checkitem</name>
+                <desc>The new checkitem to add</desc>
+              </argument>
+            </arguments>
+          </extended>
+
+        </method>
+      </methods>
+
+    </class>
+  </classes>
+  
+</package>

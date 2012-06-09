@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml-stylesheet type="text/xsl" href="VersionHistory.xslt" ?>
+<history>
+  <version>
+    <major>1</major>
+    <minor>0</minor>
+    <revision>0</revision>
+    <date>Dec 28, 2006</date>
+    <notes>
+      <note>Renamed project from flxjs to jsi.</note>
+      <note>Added AJAX package</note>
+    </notes>
+  </version>
+
+  <version>
+    <major>1</major>
+    <minor>0</minor>
+    <revision>1</revision>
+    <date>Jan 24, 2007</date>
+    <notes>
+      <note>Implemented ajax.getXMLResponse()</note>
+    </notes>
+  </version>
+
+  <version>
+    <major>1</major>
+    <minor>0</minor>
+    <revision>2</revision>
+    <date>Jan 25, 2007</date>
+    <notes>
+      <note>Implemented AjaxElement class and AjaxAutomate to handle automatic ajax methodologies.</note>
+      <note>Fixed loadObject call to allow even Formitems to begin as Elements. THIS MEANS WE COULD DEVELOP A PROPER LOAD() FACTORY CALL</note>
+    </notes>
+  </version>
+
+  <version>
+    <major>1</major>
+    <minor>0</minor>
+    <revision>3</revision>
+    <date>Feb 1, 2007</date>
+    <notes>
+      <note>Fixed a few naming inconsistencies in the animation subpackage.</note>
+      <note>Began work on new package: table. Started with basic table, row, column, cell functionality. Aim to implement sort and paging soon.</note>
+    </notes>
+  </version>
+
+  <version>
+    <major>1</major>
+    <minor>0</minor>
+    <revision>4</revision>
+    <date>Feb 4, 2007</date>
+    <notes>
+      <note>Table package now allows Cells to be Elements. Also used Renderer class to draw, and refresh the table.</note>
+      <note>Implemented numeric and text sorting for columns, including cells of element types.</note>
+      <note>Started paging.</note>
+    </notes>
+  </version>
+
+  <version>
+    <major>1</major>
+    <minor>0</minor>
+    <revision>5</revision>
+    <date>Feb 7, 2007</date>
+    <notes>
+      <note>Fixed issue within validation package that didn't recognise 0 as a min or max numeric value.</note>
+      <note>Updated table.loadFromXML().</note>
+      <note>Added table.AutomatedTable object for quick loading objects.</note>
+      <note>Updates to the table and dhtml packages. Many new dhtml functions. </note>
+      <note>dhtml.getAttributes() only returns attributes that are not null.</note>
+    </notes>
+  </version>
+
+
+  <version>
+    <major>1</major>
+    <minor>0</minor>
+    <revision>6</revision>
+    <date>Feb 8, 2007</date>
+    <notes>
+      <note>Allowed the creation of columns, cells and rows without the owner object. The owner is now assigned when add[type] is called.</note>
+    </notes>
+  </version>
+
+  <version>
+    <major>1</major>
+    <minor>0</minor>
+    <revision>7</revision>
+    <date>Feb 14, 2007</date>
+    <notes>
+      <note>Minor changes to DHTML and TABLE, including dhtml.cloneNode function and table.row.getCells </note>
+    </notes>
+  </version>
+
+  <version>
+    <major>1</major>
+    <minor>0</minor>
+    <revision>8</revision>
+    <date>Feb 18, 2007</date>
+    <notes>
+      <note>Created INPUT object as an extension of table.</note>
+    </notes>
+  </version>
+  
+  <version>
+    <major>1</major>
+    <minor>0</minor>
+    <revision>9</revision>
+    <date>Feb 20, 2007</date>
+    <notes>
+      <note>
+        Removed the Preloading via XML option in INPUT table and
+        made it now have to occur using the insertRow() function.
+      </note>
+    </notes>
+  </version>
+
+  <version>
+    <major>1</major>
+    <minor>0</minor>
+    <revision>10</revision>
+    <date>Apr 17, 2007</date>
+    <notes>
+      <note>
+        Fixed fade to prevent early calls to start() from executing the first 
+        opacity change - (added hasDelay() to base animation class).
+      </note>
+    </notes>
+    </version>
+
+  <version>
+    <major>1</major>
+    <minor>0</minor>
+    <revision>11</revision>
+    <date>Apr 18, 2007</date>
+    <notes>
+      <note>
+       Removed unnecessary directories in solution.
+      </note>
+    </notes>
+    </version>
+
+  <version>
+    <major>1</major>
+    <minor>0</minor>
+    <revision>12</revision>
+    <date>Apr 20, 2007</date>
+    <notes>
+      <note>
+        Fixed bug where no result in ajax automation threw error.
+      </note>
+      <note>
+        Extended Ajax to now allow a caller output function for every row of output.
+      </note>
+    </notes>
+  </version>
+
+  <version>
+    <major>1</major>
+    <minor>0</minor>
+    <revision>13</revision>
+    <date>Apr 21, 2007</date>
+    <notes>
+      <note>
+        Added select option to Dhtml package.
+      </note>
+      <note>
+        Added addOption() removeOption() anbd clearOptions() to DHTML.Select
+      </note>
+      <note>
+        ENFORCED createElement() in loader to always call dhtml.resetElementType().
+      </note>
+    </notes>
+  </version>
+
+  <version>
+    <major>1</major>
+    <minor>1</minor>
+    <revision>0</revision>
+    <date></date>
+    <notes>
+      <note>Major overhaul from previous version. Switched whole project into using prototype to 
+      improve performance. Namespaced everything properly. Removed private variables. </note>
+      <note>Animation is now it's own package.</note>
+      <note>There is a new package: Testing.</note>
+      <note>resetElementType() is no longer supported. Use var element = jsi.dhtml.resetElement(element);</note>
+      <note>all library functions now require jsi.library namespace.</note>
+      <note>Factory function for dhtml object.</note>
+      <note>No more support for creators: loadElement(), loadForm() etc. has been removed. Must use "new jsi.dhtml.Element(id)" to load 
+      a new element for example.</note>
+    </notes>
+  </version>
+  <!--
+  
+  <version>
+    <major></major>
+    <minor></minor>
+    <revision></revision>
+    <date></date>
+    <notes>
+      <note></note>
+    </notes>
+  </version>
+  
+   -->
+  
+</history>

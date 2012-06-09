@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml-stylesheet type="text/xsl" href="Todo.xslt" ?>
+<todo>
+
+  <item>
+    <name>ID attribute</name>
+    <package>Validation</package>
+    <desc>Currently, the auto validation requires inputs have id fields, when 
+    some inputs won't have them. The same is true for the form -> jsi.validation.doSubmit()</desc>
+    <priority>High</priority>
+    <order>75</order>
+    <status>New</status>
+  </item>
+
+  <item>
+    <name>Sorting/Paging of table</name>
+    <desc>
+      Note:: Sorting and Paging will be very slow if done to rows of INPUT type (as their value's won't be kept - could be though-> could  
+      make a local array to store values if the Element is INPUT/TEXTAREA/SELECT... hmmmm). Would be quicker....
+    </desc>
+    <priority></priority>
+    <order>0</order>
+    <status></status>
+  </item>
+
+  <item>
+    <name>Table cells, left and right text</name>
+    <desc>Need to rethink this a little</desc>
+    <priority>Low</priority>
+    <order>5</order>
+    <status>New</status>
+  </item>
+
+
+  <item>
+    <name>table.loadFromXML</name>
+    <desc>Issue: element given must be JSI Element, however, if the object underneath is an XmlDocument (from an AJAX post), then 
+   getValue() doesn't work (innerHTML only works after the node has been added to the page's DOM)... Hmmm. Current soln is a little bodgy.</desc>
+    <priority>Low</priority>
+    <order>5</order>
+    <status>New</status>
+  </item>
+
+  <item>
+    <name>table.renderer.updateInput</name>
+    <desc>IE6 doesn't allow dynamic adding of checked attribute and as such try to use document.createNamedElement in library, but checked still doesn't work. 
+    Implications: checked items won't stay checked through sorts and paging events.</desc>
+    <priority>Medium</priority>
+    <order>55</order>
+    <status>New</status>
+  </item>
+
+  <item>
+    <name>Tables and content vs attributes</name>
+    <desc>There is some inconsistency with setContent and setValue and loading and writing data. When working with a template, we must eitehr use attributes 
+    for value data, or use the value data to set attributes then output them.</desc>
+    <priority>High</priority>
+    <order>98</order>
+    <status>New</status>
+  </item>
+
+  <item>
+    <name>Timing and performance</name>
+    <desc>Performance is pretty bad - esp for larger tables. Most seems to be within the DHTML Element class. Implement 
+    prototyping!! </desc>
+    <priority>High</priority>
+    <order>99</order>
+    <status>New</status>
+  </item>
+  <!--
+  
+  <item>
+    <name></name>
+    <desc></desc>
+    <priority></priority>
+    <order>0</order>
+    <status></status>
+  </item>
+  
+  -->
+</todo>
